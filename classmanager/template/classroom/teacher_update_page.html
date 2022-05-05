@@ -1,0 +1,40 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+  .container{
+    background: #f4b547;
+  }
+  .jumbotron{
+  position: absolute;
+  width: 100%;
+  height: 120vh;
+  background: #aa91c7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1{
+color: black;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+</style>
+
+<div class="container">
+  <div class="jumbotron">
+{% if profile_updated %}
+<h1>Your profile has been successfully updated.</h1>
+{% else %}
+  <h1>Update Profile</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input class="btn btn-primary" type="submit" name="" value="Submit">
+  </form>
+  </div>
+  </div>
+
+{% endif %}
+
+{% endblock %}

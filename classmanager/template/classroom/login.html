@@ -1,0 +1,178 @@
+{% extends 'classroom/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+  .login-page{
+  position: absolute;
+  width: 100%;
+  height: 120vh;
+  background: #f4b547;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page h1{
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.login-page img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.login-form {
+  margin-top: 30px;
+  height:600px;
+  width:400px;
+  background: #aa91c7 ;
+  color: white;
+  padding: 70px 100px;
+  position: absolute;
+
+}
+
+.avatar img{
+  height:100px;
+  width:100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: 37%;
+  opacity: 1;
+  overflow: auto;
+  opacity: 1;
+}
+
+.login-form h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.login-form p{
+  margin-top: 30px;
+  padding:0;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.login-form input{
+  width: 100%;
+  margin-bottom: 20px;
+  color: white;
+  opacity: 1;
+}
+
+.login-form input[type="text"], input[type="password"]
+{
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+}
+.answer{
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+}
+
+.answer:hover{
+  transform: scale(1.1);
+  transition: 0.5;
+  border-bottom: 1px solid #49057a ;
+}
+
+.login-form input[type="text"]:hover, input[type="password"]:hover{
+  transform: scale(1.1);
+  transition: 0.5;
+  border-bottom: 1px solid #49057a ;
+}
+
+.login-form input[type="submit"]{
+  border: 1px solid #00316b;
+  outline: none;
+  height: 40px;
+  background: #f4b547 ;
+  color: white;
+  font-size: 18px;
+
+}
+
+.login-form input[type="submit"]:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: 0.5;
+}
+
+.login-form a{
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 20px;
+  color: white;
+  opacity: 1;
+}
+
+.login-form a:hover{
+  color: #7cb3f6 ;
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+  </style>
+<div class="login-page">
+  <img src="{% static 'images/login-background.PNG' %}" alt="">
+  <div class="login-form">
+    <div class="avatar">
+      <img src="{% static 'images/login-avatar.PNG' %}" alt="">
+    </div>
+    {% if messages %}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+    <h1>Login</h1>
+    <form action="{% url 'classroom:login' %}" method="post">
+      {% csrf_token %}
+      <p>Username:</p>
+      <input type="text" name="username" placeholder="Enter your username">
+      <br>
+      <br>
+      <p>Password:</p>
+      <input type="password" name="password" placeholder="Enter password">
+      <br>
+      <br>
+      <input class="btn btn-primary" type="submit" name="" value="Login">
+    </form>
+    <a href="{% url 'classroom:signup' %}">Don't have an account.</a>
+  </div>
+</div>
+
+
+{% endblock %}

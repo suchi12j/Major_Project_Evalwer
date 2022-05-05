@@ -1,0 +1,33 @@
+{% extends 'classroom/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+  .body{
+    background: #f4b547;
+  }
+  .jumbotron{
+  background: #aa91c7;
+
+}
+
+.type{
+  background: #49057a  ;
+color: white;
+}
+</style>
+
+<div class="container">
+<div class="jumbotron">
+  {% if assignment_uploaded %}
+  <h1>Question uploaded successfully.</h1>
+  {% else %}
+  <h1>Upload Question</h1>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-danger" name="" value="Upload">
+  </form>
+  {% endif %}
+</div>
+</div>
+{% endblock %}

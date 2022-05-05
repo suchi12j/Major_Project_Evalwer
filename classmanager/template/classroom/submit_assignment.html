@@ -1,0 +1,28 @@
+{% extends 'classroom/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+  .container{
+    background: #f4b547;
+  }
+  .jumbotron{
+  background: #aa91c7;
+
+}
+
+.h1{
+color: black;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+</style>
+<div class="container">
+<div class="jumbotron">
+  <h1>Submit Answer</h1>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary" name="" value="Submit">
+  </form>
+</div>
+</div>
+{% endblock %}
